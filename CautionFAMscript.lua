@@ -80,10 +80,10 @@ update_state = false
 local script_vers = 2
 local script_vers_text = "1.01"
 
-local update_url = "https://raw.githubusercontent.com/Marlon000/scripts/main/update.ini" -- тут тоже свою ссылку
-local update_path = getWorkingDirectory() .. "/update.ini" -- и тут свою ссылку
+local update_url = "https://raw.githubusercontent.com/Marlon000/scripts/main/update.ini" -- ГІГіГІ ГІГ®Г¦ГҐ Г±ГўГ®Гѕ Г±Г±Г»Г«ГЄГі
+local update_path = getWorkingDirectory() .. "/update.ini" -- ГЁ ГІГіГІ Г±ГўГ®Гѕ Г±Г±Г»Г«ГЄГі
 
-local script_url = "https://github.com/thechampguess/scripts/blob/master/autoupdate_lesson_16.luac?raw=true" -- тут свою ссылку
+local script_url = "https://raw.githubusercontent.com/Marlon000/scripts/main/CautionFAMscript.lua" -- ГІГіГІ Г±ГўГ®Гѕ Г±Г±Г»Г«ГЄГі
 local script_path = thisScript().path
 
 function main()
@@ -99,7 +99,7 @@ function main()
 			if status == dlstatus.STATUS_ENDDOWNLOADDATA then
 				-updateIni = inicfg.load(nil, update_path)
 					if tonumber(updateIni.info.vers) > script_vers then
-							sampAddChatMessage(tag .. "Найдено обновление! Версия: " .. updateIni.info.vers_text, main_color)
+							sampAddChatMessage(tag .. "ГЌГ Г©Г¤ГҐГ­Г® Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ! Г‚ГҐГ°Г±ГЁГї: " .. updateIni.info.vers_text, main_color)
 							update_state = true
 					end
 					os.remove(update_path)
@@ -112,7 +112,7 @@ function main()
 		if update_state then
 				downloadUrlToFile(script_url, script_path, function(id, status)
 						if status == dlstatus.STATUS_ENDDOWNLOADDATA then
-								sampAddChatMessage(tag .. "Скрипт был успешно обновлен! Сейчас выполнится перезагрузка скрипта.", main_color)
+								sampAddChatMessage(tag .. "Г‘ГЄГ°ГЁГЇГІ ГЎГ»Г« ГіГ±ГЇГҐГёГ­Г® Г®ГЎГ­Г®ГўГ«ГҐГ­! Г‘ГҐГ©Г·Г Г± ГўГ»ГЇГ®Г«Г­ГЁГІГ±Гї ГЇГҐГ°ГҐГ§Г ГЈГ°ГіГ§ГЄГ  Г±ГЄГ°ГЁГЇГІГ .", main_color)
 								thisScript():reload()
 						end
 				end)
@@ -123,10 +123,10 @@ function main()
 end
 
 function cmd_update(arg)
-    sampShowDialog(1000, "Автообновление v2.0", "{FFFFFF}Это урок по обновлению\n{FFF000}Новая версия", "Закрыть", "", 0)
+    sampShowDialog(1000, "ГЂГўГІГ®Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ v2.0", "{FFFFFF}ГќГІГ® ГіГ°Г®ГЄ ГЇГ® Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГѕ\n{FFF000}ГЌГ®ГўГ Гї ГўГҐГ°Г±ГЁГї", "Г‡Г ГЄГ°Г»ГІГј", "", 0)
 end
 
-function httpRequest(request, body, handler) -- copas.http -- ФУНКЦИЯ HTTP ЗАПРОСА
+function httpRequest(request, body, handler) -- copas.http -- Г”Г“ГЌГЉГ–Г€Гџ HTTP Г‡ГЂГЏГђГЋГ‘ГЂ
     -- start polling task
     if not copas.running then
         copas.running = true
@@ -157,13 +157,13 @@ function httpRequest(request, body, handler) -- copas.http -- ФУНКЦИЯ HTTP ЗАПРО
     end
 end
 
-function getSerialNumber() -- получение серийника
+function getSerialNumber() -- ГЇГ®Г«ГіГ·ГҐГ­ГЁГҐ Г±ГҐГ°ГЁГ©Г­ГЁГЄГ 
     local serial = ffi.new("unsigned long[1]", 0)
     ffi.C.GetVolumeInformationA(nil, nil, 0, serial, nil, nil, nil, 0)
     return serial[0]
 end
 
-function checkipserver() -- проверка ip сервера
+function checkipserver() -- ГЇГ°Г®ГўГҐГ°ГЄГ  ip Г±ГҐГ°ГўГҐГ°Г 
     local ip, port = sampGetCurrentServerAddress()
         if ipblue == ip..':'..port then
             if ipblue == '54.37.142.74:7777' then
@@ -178,16 +178,16 @@ function CHECKERFORSCRIPT()
 	httpRequest('https://text-host.ru/raw/bez-zagolovka-1365', nil, function(response, code, headers, status)
 			if response then
 				if not response:find(getSerialNumber() .. ',') then
-					sampAddChatMessage(tag .. 'Ебать ты чорт пашол нахуй', main_color)
+					sampAddChatMessage(tag .. 'Г…ГЎГ ГІГј ГІГ» Г·Г®Г°ГІ ГЇГ ГёГ®Г« Г­Г ГµГіГ©', main_color)
 					thisScript():unload()
 				end
 			end
 	end)
 
 	if not checkipserver() then
-  	sampAddChatMessage(tag .. 'Данный скрипт привязан к серверу ' .. bluelight_color_text .. 'Advance RP BLUE' .. main_color_text .. '. Произошла выгрузка.', main_color)
+  	sampAddChatMessage(tag .. 'Г„Г Г­Г­Г»Г© Г±ГЄГ°ГЁГЇГІ ГЇГ°ГЁГўГїГ§Г Г­ ГЄ Г±ГҐГ°ГўГҐГ°Гі ' .. bluelight_color_text .. 'Advance RP BLUE' .. main_color_text .. '. ГЏГ°Г®ГЁГ§Г®ГёГ«Г  ГўГ»ГЈГ°ГіГ§ГЄГ .', main_color)
     thisScript():unload()
   else
-		sampAddChatMessage(tag .. 'Скрипт был успешно загружен.', main_color)
+		sampAddChatMessage(tag .. 'Г‘ГЄГ°ГЁГЇГІ ГЎГ»Г« ГіГ±ГЇГҐГёГ­Г® Г§Г ГЈГ°ГіГ¦ГҐГ­.', main_color)
   end
 end
