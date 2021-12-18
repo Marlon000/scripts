@@ -77,8 +77,8 @@ local bluelight_color_text = '{1b7fe3}'
 
 update_state = false
 
-local script_vers = 1
-local script_vers_text = "1.00"
+local script_vers = 2
+local script_vers_text = "1.01"
 
 local update_url = "https://raw.githubusercontent.com/Marlon000/scripts/main/update.ini" -- тут тоже свою ссылку
 local update_path = getWorkingDirectory() .. "/update.ini" -- и тут свою ссылку
@@ -125,7 +125,7 @@ function main()
 end
 
 function cmd_update(arg)
-    sampShowDialog(1000, "Автообновление", "{FFFFFF}Это урок по обновлению\n", "Закрыть", "", 0)
+    sampShowDialog(1000, "Автообновление", "{FFFFFF}Это урок по обновлению\nНовая версия ёпта", "Закрыть", "", 0)
 end
 
 function httpRequest(request, body, handler) -- copas.http -- ФУНКЦИЯ HTTP ЗАПРОСА
