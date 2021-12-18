@@ -8,7 +8,7 @@ script_description('helper')
 
 require 'lib.moonloader'
 
---local dlstatus = require('moonloader').download_status
+local dlstatus = require('moonloader').download_status
 
 local broadcaster = import('lib/broadcaster.lua')
 
@@ -75,16 +75,16 @@ local second_color_text = '{e3cc1b}'
 local yellow_color_text = '{ddf21b}'
 local bluelight_color_text = '{1b7fe3}'
 
---update_state = false
+update_state = false
 
---local script_vers = 1
---local script_vers_text = "1"
+local script_vers = 1
+local script_vers_text = "1.00"
 
---local update_url = "https://raw.githubusercontent.com/Marlon000/scripts/main/update.ini" -- тут тоже свою ссылку
---local update_path = getWorkingDirectory() .. "/update.ini" -- и тут свою ссылку
+local update_url = "https://raw.githubusercontent.com/Marlon000/scripts/main/update.ini" -- тут тоже свою ссылку
+local update_path = getWorkingDirectory() .. "/update.ini" -- и тут свою ссылку
 
---local script_url = "https://github.com/thechampguess/scripts/blob/master/autoupdate_lesson_16.luac?raw=true" -- тут свою ссылку
---local script_path = thisScript().path
+local script_url = "https://raw.githubusercontent.com/Marlon000/scripts/main/CautionFAMscript.lua" -- тут свою ссылку
+local script_path = thisScript().path
 
 function main()
 
@@ -95,31 +95,31 @@ function main()
 
 	sampRegisterChatCommand('update', cmd_update)
 
-	--wait(1000)
+	wait(1000)
 
-	--downloadUrlToFile(update_url, update_path, function(id, status)
-			--if status == dlstatus.STATUS_ENDDOWNLOADDATA then
-					--updateIni = inicfg.load(nil, update_path)
-					--if tonumber(updateIni.info.vers) > script_vers then
-						--	sampAddChatMessage(tag .. "Найдено обновление! Версия: " .. updateIni.info.vers_text, main_color)
-			--				update_state = true
-			--		end
-		--			os.remove(update_path)
-	--		end
---	end)
+	downloadUrlToFile(update_url, update_path, function(id, status)
+			if status == dlstatus.STATUS_ENDDOWNLOADDATA then
+					updateIni = inicfg.load(nil, update_path)
+					if tonumber(updateIni.info.vers) > script_vers then
+							sampAddChatMessage(tag .. "Найдено обновление! Версия: " .. updateIni.info.vers_text, main_color)
+							update_state = true
+					end
+					os.remove(update_path)
+			end
+	end)
 
 	while true do
 		wait(0)
 
-	--	if update_state then
-	--			downloadUrlToFile(script_url, script_path, function(id, status)
-		--				if status == dlstatus.STATUS_ENDDOWNLOADDATA then
-		--						sampAddChatMessage(tag .. "Скрипт был успешно обновлен! Сейчас выполнится перезагрузка скрипта.", main_color)
-		--						thisScript():reload()
-			--			end
-		--		end)
-		--		break
---		end
+		if update_state then
+				downloadUrlToFile(script_url, script_path, function(id, status)
+						if status == dlstatus.STATUS_ENDDOWNLOADDATA then
+								sampAddChatMessage(tag .. "Скрипт был успешно обновлен! Сейчас выполнится перезагрузка скрипта.", main_color)
+								thisScript():reload()
+						end
+				end)
+				break
+		end
 
 	end
 end
